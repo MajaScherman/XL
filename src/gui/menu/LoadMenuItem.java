@@ -2,7 +2,9 @@ package gui.menu;
 
 import gui.StatusLabel;
 import gui.XL;
+
 import java.io.FileNotFoundException;
+
 import javax.swing.JFileChooser;
 
 class LoadMenuItem extends OpenMenuItem {
