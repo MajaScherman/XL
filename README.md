@@ -1,6 +1,3 @@
 XL
 ==
-
-motorbåten
-
-Hej jag testar nåt här
+The epic project of epicness! 
