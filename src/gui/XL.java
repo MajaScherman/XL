@@ -4,10 +4,14 @@ import static java.awt.BorderLayout.CENTER;
 import static java.awt.BorderLayout.NORTH;
 import static java.awt.BorderLayout.SOUTH;
 import gui.menu.XLMenuBar;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -16,18 +20,21 @@ public class XL extends JFrame implements Printable {
     private XLCounter counter;
     private StatusLabel statusLabel = new StatusLabel();
     private XLList xlList;
+    private StatusPanel statusPanel;
 
     public XL(XL oldXL) {
         this(oldXL.xlList, oldXL.counter);
     }
 
+    //TODO lägga till att man skapar(?) ett XL-fönster så skapas modellen (MainSheet)
+    //		och så lägger man till dess Observers (CurrentLabel, SlotLabel, etc)
     public XL(XLList xlList, XLCounter counter) {
         super("Untitled-" + counter);
         this.xlList = xlList;
         this.counter = counter;
         xlList.add(this);
         counter.increment();
-        JPanel statusPanel = new StatusPanel(statusLabel);
+        statusPanel = new StatusPanel(statusLabel);
         JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS);
         Editor editor = new Editor();
         add(NORTH, statusPanel);
@@ -38,6 +45,12 @@ public class XL extends JFrame implements Printable {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
         setVisible(true);
+        
+        //TODO utför MainSheet.addObserver för alla nedanstående objekt
+        //CurrentLabel
+        //Editor
+        //SlotLabels.getObservers();
+        //StatusLabel
     }
 
     public int print(Graphics g, PageFormat pageFormat, int page) {

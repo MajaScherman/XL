@@ -1,4 +1,5 @@
-package util;
+package gui;
+
 
 /**
  * NumberAdjustment.java Created: Mon OTue 24 2005

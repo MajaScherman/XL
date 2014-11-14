@@ -5,7 +5,8 @@ import java.io.Reader;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.regex.Pattern;
-import util.XLException;
+
+import model.XLException;
 
 /**
  * An <code>ExprParser</code> object is a parser provides a factory method for

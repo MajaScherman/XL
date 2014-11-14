@@ -1,4 +1,4 @@
-package util;
+package gui;
 
 /**
  * Adjustment.java Created: Tue Oct 24 2005

@@ -1,6 +1,6 @@
 package expr;
 
-import util.NumberAdjustment;
+import gui.NumberAdjustment;
 
 class Num extends Expr {
     private static NumberAdjustment adjustment = new NumberAdjustment(0, 2);
