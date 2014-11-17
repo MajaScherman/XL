@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.MainSheet;
+import model.SlotFactory;
 
 public class XL extends JFrame implements Printable {
     private static final int ROWS = 10, COLUMNS = 8;
@@ -36,13 +37,18 @@ public class XL extends JFrame implements Printable {
     //		och så lägger man till dess Observers (CurrentLabel, SlotLabel, etc)
     public XL(XLList xlList, XLCounter counter) {
         super("Untitled-" + counter);
+        
+        errorMessage = new ErrorMessage();
+        currentAddress = new CurrentAddress();
+        sheet = new MainSheet(new SlotFactory());
+        
         this.xlList = xlList;
         this.counter = counter;
         xlList.add(this);
         counter.increment();
         statusPanel = new StatusPanel(statusLabel);
-        JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS);
-        Editor editor = new Editor();                                                                                                   
+        SheetPanel sheetPanel = new SheetPanel(ROWS, COLUMNS);
+        Editor editor = new Editor(sheet);                                                                                                   
         add(NORTH, statusPanel);
         add(CENTER, editor);
         add(SOUTH, sheetPanel);
@@ -52,17 +58,14 @@ public class XL extends JFrame implements Printable {
         setResizable(false);
         setVisible(true);
         
-        errorMessage = new ErrorMessage();
-        currentAddress = new CurrentAddress();
+        
         
         errorMessage.addObserver(statusLabel);
         currentAddress.addObserver(statusPanel.getCurrentLabel());
         currentAddress.addObserver(editor);
-        //TODO utför MainSheet.addObserver för alla nedanstående objekt
-        //CurrentLabel
-        //Editor
-        //SlotLabels.getObservers();
-        //StatusLabel
+        for(SlotLabel s: sheetPanel.getSlotLabels().getObservers()){
+        	sheet.addObserver(s);
+        }
     }
 
     public int print(Graphics g, PageFormat pageFormat, int page) {

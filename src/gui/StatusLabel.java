@@ -10,7 +10,7 @@ public class StatusLabel extends ColoredLabel implements Observer {
     }
 
     public void update(Observable observable, Object object) {
-    	//TODO: fyll den med errorMessage i MainSheet
-        setText("");
+        ErrorMessage err = (ErrorMessage) observable;
+    	setText(err.getMessage());
     }
 }

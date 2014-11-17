@@ -13,7 +13,6 @@ public class SheetPanel extends BorderPanel {
     }
     
     public SlotLabels getSlotLabels() {
-    	//TODO returnera slotLabels
-    	return null;
+    	return slotLabels;
     }
 }

@@ -9,6 +9,7 @@ import javax.swing.SwingConstants;
 
 public class SlotLabels extends GridPanel {
     private List<SlotLabel> labelList;
+    private List<SlotLabel> observers;
 
     public SlotLabels(int rows, int cols) {
         super(rows + 1, cols);
@@ -17,21 +18,20 @@ public class SlotLabels extends GridPanel {
             add(new ColoredLabel(Character.toString(ch), Color.LIGHT_GRAY,
                     SwingConstants.CENTER));
         }
+    	observers = new ArrayList<SlotLabel>();
         for (int row = 1; row <= rows; row++) {
             for (char ch = 'A'; ch < 'A' + cols; ch++) {
                 SlotLabel label = new SlotLabel(ch, row);
                 add(label);
                 labelList.add(label);
+                observers.add(label);
             }
         }
         SlotLabel firstLabel = labelList.get(0);
         firstLabel.setBackground(Color.YELLOW);
     }
     
-    //TODO ändra namnet på metoden?
-    public List<Observer> getObservers() {
-    	//TODO hämta alla labels som ska observera vår mainSheet
-    	//		D.v.s alla SlotLabel-objekt med row >= 1
-    	return null;
+    public List<SlotLabel> getObservers() {
+    	return observers;
     }
 }

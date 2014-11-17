@@ -24,6 +24,7 @@ public class SlotLabel extends ColoredLabel implements ActionListener, Observer 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		//TODO hämta labelns innehåll från model
+		
 	}
     
 }
