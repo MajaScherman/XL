@@ -1,17 +1,21 @@
 package model;
 
-public class TextSlot extends Slot {
+import expr.Environment;
+
+public class TextSlot implements Slot {
 	private String txt;
 	
 	public TextSlot(String txt) {
-		
-	}
-	
-	public double value() {
-		return 0;
+		this.txt = txt;
 	}
 
-	public String toString() {
-		return null;
+	@Override
+	public double value(Environment env) {
+		return 0;
+	}
+	
+	@Override
+	public String toString(Environment env) {
+		return txt;
 	}
 }
