@@ -15,13 +15,19 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.MainSheet;
+
 public class XL extends JFrame implements Printable {
     private static final int ROWS = 10, COLUMNS = 8;
     private XLCounter counter;
     private StatusLabel statusLabel = new StatusLabel();
     private XLList xlList;
     private StatusPanel statusPanel;
-
+    private CurrentLabel currentLabel;
+    private CurrentAddress currentAddress;
+    private ErrorMessage errorMessage;
+    private MainSheet sheet;
+    
     public XL(XL oldXL) {
         this(oldXL.xlList, oldXL.counter);
     }
@@ -36,7 +42,7 @@ public class XL extends JFrame implements Printable {
         counter.increment();
         statusPanel = new StatusPanel(statusLabel);
         JPanel sheetPanel = new SheetPanel(ROWS, COLUMNS);
-        Editor editor = new Editor();
+        Editor editor = new Editor();                                                                                                   
         add(NORTH, statusPanel);
         add(CENTER, editor);
         add(SOUTH, sheetPanel);
@@ -46,6 +52,12 @@ public class XL extends JFrame implements Printable {
         setResizable(false);
         setVisible(true);
         
+        errorMessage = new ErrorMessage();
+        currentAddress = new CurrentAddress();
+        
+        errorMessage.addObserver(statusLabel);
+        currentAddress.addObserver(statusPanel.getCurrentLabel());
+        currentAddress.addObserver(editor);
         //TODO utför MainSheet.addObserver för alla nedanstående objekt
         //CurrentLabel
         //Editor
