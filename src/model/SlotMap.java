@@ -6,6 +6,10 @@ public class SlotMap {
 				   //address, slot
 	private HashMap<String, Slot> map;
 	
+	public SlotMap(){
+		//new 17/11
+		map = new HashMap<String,Slot>();
+	}
 	public Slot put(String address, Slot slot) {
 		// map.put()
 		return null;

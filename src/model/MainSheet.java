@@ -7,8 +7,13 @@ import expr.Environment;
 public class MainSheet extends Observable implements Environment {
 	private String currentSlotAddress;
 	private SlotFactory factory;
-	private SlotMap map;
+	private SlotMap map = new SlotMap();
 	private String status;
+	
+	public MainSheet(SlotFactory factory){
+		this.factory = factory;
+				
+	}
 	
 	public void setCurrent(String currentSlotAddress) {
 		//TODO ska spara den inmatade
