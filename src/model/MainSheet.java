@@ -13,7 +13,7 @@ public class MainSheet extends Observable implements Environment {
 	private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
 	private ErrorMessage errorMessage;
 	private Slot slot;
-
+//TODO notify observers on the right places
 	public MainSheet(SlotFactory factory) {
 		this.statusLabel = new StatusLabel();
 		errorMessage = new ErrorMessage();
@@ -32,11 +32,13 @@ public class MainSheet extends Observable implements Environment {
 			slot = factory.buildSlot(editorText);
 			//bygger på att current är verkligen satt först!!!
 			map.put(currentSlotAddress, slot);
+			notifyObservers();//här kanske e bra
 			
 		} catch (XLException e) {
 			// TODO: sÃ¤tt statuslabel text
 	//		System.out.print("Failed to build a slot");
-			errorMessage.Error("Failed to build a slot");
+			System.out.print(e.getMessage());
+			errorMessage.Error("Failed to build a slot" + e.getMessage());
 			statusLabel.update(this, errorMessage);
 		}
 	}
