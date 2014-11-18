@@ -13,7 +13,6 @@ public class StatusPanel extends BorderPanel {
     }
     
     public CurrentLabel getCurrentLabel() {
-    	//TODO returnerar currLabel
-    	return null;
+    	return currLabel;
     }
 }

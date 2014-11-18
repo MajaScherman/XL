@@ -11,6 +11,7 @@ public class CurrentLabel extends ColoredLabel implements Observer  {
     
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		//TODO hämta currentAddress från MainSheet
+		CurrentAddress temp = (CurrentAddress) arg0;
+		this.setText(temp.getCurrent());
 	}
 }
