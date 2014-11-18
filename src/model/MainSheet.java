@@ -3,14 +3,20 @@ package model;
 import java.util.Observable;
 
 import expr.Environment;
+import gui.ErrorMessage;
+import gui.StatusLabel;
 
 public class MainSheet extends Observable implements Environment {
 	private String currentSlotAddress;
 	private SlotFactory factory;
 	private SlotMap map;
-	private String status;
+	private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
+	private ErrorMessage errorMessage;
+	private Slot slot;
 
 	public MainSheet(SlotFactory factory) {
+		this.statusLabel = new StatusLabel();
+		errorMessage = new ErrorMessage();
 		this.factory = factory;
 		map = new SlotMap();
 	}
@@ -23,12 +29,15 @@ public class MainSheet extends Observable implements Environment {
 	public void createSlot(String editorText) {
 		try {
 			// TODO anvÃ¤nda currentSlot och SlotFactory fÃ¶r att bygga en slot
-			// här skulle vi väl inte använda current slot
-			factory.buildSlot(editorText);
-
+			slot = factory.buildSlot(editorText);
+			//bygger på att current är verkligen satt först!!!
+			map.put(currentSlotAddress, slot);
+			
 		} catch (XLException e) {
 			// TODO: sÃ¤tt statuslabel text
-			System.out.print("Failed to build a slot");
+	//		System.out.print("Failed to build a slot");
+			errorMessage.Error("Failed to build a slot");
+			statusLabel.update(this, errorMessage);
 		}
 	}
 
@@ -68,7 +77,8 @@ public class MainSheet extends Observable implements Environment {
 
 	public String getStatus() {
 		// TODO returnera status (errormeddelande, etc) 
-		return null;
+		
+		return errorMessage.getMessage();
 	}
 
 }
