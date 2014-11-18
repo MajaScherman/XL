@@ -9,7 +9,6 @@ import javax.swing.SwingConstants;
 
 public class SlotLabels extends GridPanel {
     private List<SlotLabel> labelList;
-    private List<SlotLabel> observers;
 
     public SlotLabels(int rows, int cols) {
         super(rows + 1, cols);
@@ -18,13 +17,11 @@ public class SlotLabels extends GridPanel {
             add(new ColoredLabel(Character.toString(ch), Color.LIGHT_GRAY,
                     SwingConstants.CENTER));
         }
-    	observers = new ArrayList<SlotLabel>();
         for (int row = 1; row <= rows; row++) {
             for (char ch = 'A'; ch < 'A' + cols; ch++) {
                 SlotLabel label = new SlotLabel(ch, row);
                 add(label);
                 labelList.add(label);
-                observers.add(label);
             }
         }
         SlotLabel firstLabel = labelList.get(0);
@@ -32,6 +29,6 @@ public class SlotLabels extends GridPanel {
     }
     
     public List<SlotLabel> getObservers() {
-    	return observers;
+    	return labelList;
     }
 }
