@@ -52,11 +52,12 @@ public class MainSheet extends Observable implements Environment {
 		// kolla om Slot:en finns i SlotMap med exists(String)
 		// om den inte finns, returna ""
 		// annars, returnera slotens toString()
-		Slot slot = map.get(address);
-		if (slot == null) {
+		
+		if (!map.exists(address)) {
 			return "";
 
 		} else {
+			Slot slot = map.get(address);
 			return slot.toString();
 		}
 	}
