@@ -10,17 +10,15 @@ public class CommentSlot implements Slot {
 		this.txt = txt;
 	}
 
-	@Override
 	public double value(Environment env) {
 		return 0;
 	}
 	
-	@Override
 	public String toString(Environment env) {
 		return txt;
 	}
 	
-	public String editorString(Environment env){
+	public String editorString(){
 		return "#" + txt;
 	}
 }

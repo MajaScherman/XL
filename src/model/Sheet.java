@@ -4,7 +4,6 @@ import java.util.Observable;
 
 import expr.Environment;
 import gui.ErrorMessage;
-import gui.StatusLabel;
 
 public class Sheet extends Observable implements Environment {
 	private SlotFactory factory;
@@ -97,7 +96,7 @@ public class Sheet extends Observable implements Environment {
 	public String getEditorText(String address) {
 		try {
 			Slot slot = map.get(address);
-			return slot.editorString(this);
+			return slot.editorString();
 		} catch (XLException e) {
 			return "";
 		}
@@ -106,5 +105,9 @@ public class Sheet extends Observable implements Environment {
 	public SlotMap getSlotMap() {
 		return map;
 	}
-
+	
+	public void finishLoad(){
+		setChanged();
+		notifyObservers();
+	}
 }

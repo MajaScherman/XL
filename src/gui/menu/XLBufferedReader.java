@@ -10,22 +10,35 @@ import model.Slot;
 import model.SlotFactory;
 import model.XLException;
 
-
 public class XLBufferedReader extends BufferedReader {
 	public XLBufferedReader(String name) throws FileNotFoundException {
 		super(new FileReader(name));
 	}
 
-	
 	public void load(Map<String, Slot> map) {
-		Scanner scan = null;
 		SlotFactory factory = new SlotFactory();
 		try {
 			while (ready()) {
 				String string = readLine();
 				int i = string.indexOf('=');
-				scan = new Scanner(string);
-				map.put(scan.next(), factory.buildSlot(scan.next()));
+				StringBuilder sb = new StringBuilder();
+				String address = "";
+				int k = 0;
+				while (k != i) {
+					sb.append(string.charAt(k));
+					k++;
+				}
+				address = sb.toString();
+				sb = new StringBuilder();
+				String expr;
+				k++;
+				while (k < string.length()) {
+					sb.append(string.charAt(k));
+					k++;
+				}
+				expr = sb.toString();
+				Slot s = factory.buildSlot(expr);
+				map.put(address, s);
 			}
 		} catch (Exception e) {
 			throw new XLException(e.getMessage());

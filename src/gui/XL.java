@@ -9,11 +9,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import model.Sheet;
 import model.SlotFactory;
@@ -50,7 +47,7 @@ public class XL extends JFrame implements Printable {
         add(NORTH, statusPanel);
         add(CENTER, editor);
         add(SOUTH, sheetPanel);
-        setJMenuBar(new XLMenuBar(this, xlList, statusLabel));
+        setJMenuBar(new XLMenuBar(this, xlList, statusLabel, sheet));
         pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);

@@ -5,6 +5,7 @@ import expr.Expr;
 
 public class ExprSlot implements Slot {
 	private Expr e;
+	private double value;
 	
 	public ExprSlot(Expr e) {
 		this.e = e;
@@ -13,7 +14,8 @@ public class ExprSlot implements Slot {
 	@Override
 	public double value(Environment env) {
 		try {
-			return e.value(env);
+			value = e.value(env);
+			return value;
 		} catch (XLException e) {
 			throw e;
 		}
@@ -24,7 +26,7 @@ public class ExprSlot implements Slot {
 		return "" + value(env);
 	}
 	
-	public String editorString(Environment env) throws XLException {
+	public String editorString() {
 		return e.toString();
 	}
 }
