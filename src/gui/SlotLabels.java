@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 public class SlotLabels extends GridPanel {
     private List<SlotLabel> labelList;
 
-    public SlotLabels(int rows, int cols) {
+    public SlotLabels(int rows, int cols, CurrentAddress curr) {
         super(rows + 1, cols);
         labelList = new ArrayList<SlotLabel>(rows * cols);
         for (char ch = 'A'; ch < 'A' + cols; ch++) {
@@ -19,7 +19,7 @@ public class SlotLabels extends GridPanel {
         }
         for (int row = 1; row <= rows; row++) {
             for (char ch = 'A'; ch < 'A' + cols; ch++) {
-                SlotLabel label = new SlotLabel(ch, row);
+                SlotLabel label = new SlotLabel(ch, row, curr);
                 add(label);
                 labelList.add(label);
             }
