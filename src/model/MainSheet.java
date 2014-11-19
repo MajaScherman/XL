@@ -94,7 +94,16 @@ public class MainSheet extends Observable implements Environment {
 	 * doesn't exist, it returns an empty string
 	 */
 	public String getSlotText(String address) {
+		try {
+			Slot slot = map.get(address);
+			return "" + slot.value(this);
+		} catch (XLException e) {
+			errorMessage.Error(e.getMessage());
+			return "";
+		}
+	}
 
+	public String getEditorText(String address) {
 		try {
 			Slot slot = map.get(address);
 			return slot.toString(this);
@@ -102,10 +111,6 @@ public class MainSheet extends Observable implements Environment {
 			errorMessage.Error(e.getMessage());
 			return "";
 		}
-	}
-
-	public String getEditorText() {
-		return null;
 	}
 
 }

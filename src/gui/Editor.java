@@ -24,7 +24,7 @@ public class Editor extends JTextField implements Observer, ActionListener {
 	public void update(Observable arg0, Object arg1) {
 		CurrentAddress curr = (CurrentAddress) arg0;
 		currentAddress = curr.getCurrent();
-		setText("" + sheet.getSlotText(currentAddress));
+		setText("" + sheet.getEditorText(currentAddress));
 	}
 
 	@Override
