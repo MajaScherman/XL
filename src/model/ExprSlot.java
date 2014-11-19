@@ -22,7 +22,7 @@ public class ExprSlot implements Slot {
 	@Override
 	public String toString(Environment env) throws XLException {
 		try {
-			return "" + e.toString();
+			return e.toString();
 		} catch (XLException e) {
 			throw e;
 		}
