@@ -65,8 +65,8 @@ public class MainSheet extends Observable implements Environment {
 		try {
 			Slot slot = map.get(name);
 			return slot.value(this);
-		} catch (Exception e) {
-			// TODO: handle exception
+		} catch (XLException e) {
+			errorMessage.Error(e.getMessage());
 			return 0;
 		}
 	}
@@ -92,6 +92,10 @@ public class MainSheet extends Observable implements Environment {
 			Slot slot = map.get(address);
 			return slot.toString();
 		}
+	}
+	
+	public String getEditorText() {
+		return null;
 	}
 
 }
