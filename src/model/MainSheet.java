@@ -12,8 +12,8 @@ public class MainSheet extends Observable implements Environment {
 	private ErrorMessage errorMessage;
 
 	// TODO notify observers on the right places
-	public MainSheet(SlotFactory factory) {
-		errorMessage = new ErrorMessage();
+	public MainSheet(SlotFactory factory, ErrorMessage errorMessage) {
+		this.errorMessage = errorMessage;
 		this.factory = factory;
 		map = new SlotMap();
 	}

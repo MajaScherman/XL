@@ -40,7 +40,7 @@ public class XL extends JFrame implements Printable {
         
         errorMessage = new ErrorMessage();
         currentAddress = new CurrentAddress();
-        sheet = new MainSheet(new SlotFactory());
+        sheet = new MainSheet(new SlotFactory(), errorMessage);
         
         this.xlList = xlList;
         this.counter = counter;
