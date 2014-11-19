@@ -83,4 +83,12 @@ public class XL extends JFrame implements Printable {
     public static void main(String[] args) {
         new XL(new XLList(), new XLCounter());
     }
+    
+    public MainSheet getSheet() {
+    	return sheet;
+    }
+    
+    public CurrentAddress getCurrentAddress() {
+    	return currentAddress;
+    }
 }
