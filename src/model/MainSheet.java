@@ -10,36 +10,36 @@ public class MainSheet extends Observable implements Environment {
 	private String currentSlotAddress;
 	private SlotFactory factory;
 	private SlotMap map;
-	private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
+	//private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
+	//statusLabel behövs inte, kommenterar ut allt med den
 	private ErrorMessage errorMessage;
 	private Slot slot;
 //TODO notify observers on the right places
 	public MainSheet(SlotFactory factory) {
-		this.statusLabel = new StatusLabel();
+		//this.statusLabel = new StatusLabel();
 		errorMessage = new ErrorMessage();
 		this.factory = factory;
 		map = new SlotMap();
 	}
 
 	public void setCurrent(String currentSlotAddress) {
-		// TODO ska spara den inmatade
 		this.currentSlotAddress = currentSlotAddress;
 	}
 
-	public void createSlot(String editorText) {
+	public void createSlot(String currentSlotAddress, String editorText) {
 		try {
-			// TODO anvÃ¤nda currentSlot och SlotFactory fÃ¶r att bygga en slot
 			slot = factory.buildSlot(editorText);
 			//bygger på att current är verkligen satt först!!!
 			map.put(currentSlotAddress, slot);
+			setChanged(); //tydligen måste detta göras innan man kör notifyObservers
 			notifyObservers();//här kanske e bra
 			
 		} catch (XLException e) {
-			// TODO: sÃ¤tt statuslabel text
 	//		System.out.print("Failed to build a slot");
-			System.out.print(e.getMessage());
-			errorMessage.Error("Failed to build a slot" + e.getMessage());
-			statusLabel.update(this, errorMessage);
+			System.out.print(e.getMessage());	//man kan fråga sig om detta verkligen behövs
+			errorMessage.Error("Failed to build a slot: " + e.getMessage());
+			//statusLabel.update(this, errorMessage);
+			//raden ovan behövs inte, errormessage kör notifyObservers i errorMessage.Error()
 		}
 	}
 
