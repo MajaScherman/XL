@@ -44,6 +44,8 @@ public class MainSheet extends Observable implements Environment {
 		} catch (XLException e) {
 			try {
 				Slot newSlot = factory.buildSlot(editorText);
+				map.put(currentSlotAddress, new BombSlot());
+				newSlot.value(this);
 				map.put(currentSlotAddress, newSlot);
 				setChanged();
 				notifyObservers();
