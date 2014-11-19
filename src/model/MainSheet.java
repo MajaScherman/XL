@@ -7,7 +7,6 @@ import gui.ErrorMessage;
 import gui.StatusLabel;
 
 public class MainSheet extends Observable implements Environment {
-	private String currentSlotAddress;
 	private SlotFactory factory;
 	private SlotMap map;
 	//private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
@@ -20,10 +19,6 @@ public class MainSheet extends Observable implements Environment {
 		errorMessage = new ErrorMessage();
 		this.factory = factory;
 		map = new SlotMap();
-	}
-
-	public void setCurrent(String currentSlotAddress) {
-		this.currentSlotAddress = currentSlotAddress;
 	}
 
 	public void createSlot(String currentSlotAddress, String editorText) {
@@ -71,16 +66,6 @@ public class MainSheet extends Observable implements Environment {
 			Slot slot = map.get(address);
 			return slot.toString();
 		}
-	}
-
-	public String getCurrent() {
-		return currentSlotAddress;
-	}
-
-	public String getStatus() {
-		// TODO returnera status (errormeddelande, etc) 
-		
-		return errorMessage.getMessage();
 	}
 
 }
