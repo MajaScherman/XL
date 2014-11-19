@@ -2,13 +2,10 @@ package gui;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-import model.MainSheet;
-
-public class SlotLabel extends ColoredLabel implements ActionListener, Observer {
+public class SlotLabel extends ColoredLabel implements MouseListener {
 	private char col;
 	private int row;
 	private CurrentAddress curr;
@@ -17,33 +14,43 @@ public class SlotLabel extends ColoredLabel implements ActionListener, Observer 
         super("                    ", Color.WHITE, RIGHT);
         this.col = col;
         this.row = row;
+        this.curr = curr;
+        addMouseListener(this);
     }
 
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		//TODO kalla pÃ¥ att currentLabel i mainsheet ska uppdateras
-		curr.setCurrent(col + "" + row);
+	public String toString(){
+		return "" + col + row;
+	}
+	
+	public char getCol(){
+		return col;
+	}
+	
+	public int getRow(){
+		return row;
+	}
+	
+	public void mouseClicked(MouseEvent arg0) {
+		curr.setCurrent(this);			
 	}
 
-	@Override
-	public void update(Observable observer, Object obj) {
-		//TODO hÃ¤mta labelns innehÃ¥ll frÃ¥n model
-		if (curr.getCurrent().equals(col + "" + row)) {
-			setBackground(Color.YELLOW);
-		} else {
-			setBackground(Color.WHITE);
-		}
-		//inte helt säker på om observer faktiskt kommer vara en MainSheet..? kan nån kolla upp det
-		//TODO byta ut denna instanceof om det finns nåt bättre
-		MainSheet sheet;
-		if (observer instanceof MainSheet) {
-			sheet = (MainSheet) observer;
-			String text = sheet.getSlotText(col + "" + row);
-			Adjustment adj = new Adjustment(20); //Antog att bredden på varje SlotLabel skulle vara 20, då denna klassens konstruktor skapas med 20 blanksteg.
-			//tror inte denna ska centreras: tror att siffror ska alignas till vänster och kommentarer till höger.
-			//funderar därför på att lägga till två metoder i MainSheet: isExpr(String address) och isComment(String address).
-			setText(adj.center(text));
-		}
+	public void mouseEntered(MouseEvent arg0) {
+		
+	}
+
+
+	public void mouseExited(MouseEvent arg0) {
+		
+	}
+
+
+	public void mousePressed(MouseEvent arg0) {
+		
+	}
+
+
+	public void mouseReleased(MouseEvent arg0) {
+		
 	}
     
 }

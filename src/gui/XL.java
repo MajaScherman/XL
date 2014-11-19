@@ -63,9 +63,7 @@ public class XL extends JFrame implements Printable {
         errorMessage.addObserver(statusLabel);
         currentAddress.addObserver(statusPanel.getCurrentLabel());
         currentAddress.addObserver(editor);
-        for(SlotLabel s: sheetPanel.getSlotLabels().getObservers()){
-        	sheet.addObserver(s);
-        }
+        sheet.addObserver(sheetPanel.getSlotLabels());
     }
 
     public int print(Graphics g, PageFormat pageFormat, int page) {

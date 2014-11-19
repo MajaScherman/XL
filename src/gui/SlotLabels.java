@@ -3,11 +3,14 @@ package gui;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.SwingConstants;
 
-public class SlotLabels extends GridPanel {
+import model.MainSheet;
+
+public class SlotLabels extends GridPanel implements Observer{
     private List<SlotLabel> labelList;
 
     public SlotLabels(int rows, int cols, CurrentAddress curr) {
@@ -25,10 +28,13 @@ public class SlotLabels extends GridPanel {
             }
         }
         SlotLabel firstLabel = labelList.get(0);
-        firstLabel.setBackground(Color.YELLOW);
+        firstLabel.mouseClicked(null);
     }
     
-    public List<SlotLabel> getObservers() {
-    	return labelList;
+    public void update(Observable obs, Object obj) {
+    	MainSheet sheet = (MainSheet) obs;
+    	for(SlotLabel s: labelList){
+    		s.setText(sheet.getSlotText(s.toString()));
+    	}
     }
 }
