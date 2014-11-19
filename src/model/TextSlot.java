@@ -19,4 +19,8 @@ public class TextSlot implements Slot {
 	public String toString(Environment env) {
 		return txt;
 	}
+	
+	public String editorString(Environment env){
+		return "#" + txt;
+	}
 }

@@ -34,6 +34,7 @@ public class SlotLabels extends GridPanel implements Observer{
     	for(SlotLabel s: labelList){
     		s.setText(sheet.getSlotText(s.toString()));
     	}
+    	
     }
     
     public void clickFirstLabel(){

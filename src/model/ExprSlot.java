@@ -21,10 +21,10 @@ public class ExprSlot implements Slot {
 
 	@Override
 	public String toString(Environment env) throws XLException {
-		try {
-			return e.toString();
-		} catch (XLException e) {
-			throw e;
-		}
+		return "" + value(env);
+	}
+	
+	public String editorString(Environment env) throws XLException {
+		return e.toString();
 	}
 }

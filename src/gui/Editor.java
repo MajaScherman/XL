@@ -32,6 +32,7 @@ public class Editor extends JTextField implements Observer, ActionListener {
 		String txt = this.getText();
 		if(txt.length() != 0){
 			sheet.createSlot(currentAddress, this.getText());
-		}
+		}	
+		System.out.println();
 	}
 }
