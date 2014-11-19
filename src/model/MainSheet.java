@@ -34,7 +34,7 @@ public class MainSheet extends Observable implements Environment {
 	}
 	public void deleteSlot(String address){
 		
-		map.remove(address);	
+		map.remove(address, this);	
 		
 	}
 	
@@ -62,8 +62,13 @@ public class MainSheet extends Observable implements Environment {
 	/** Returnerar value:n av Sloten med addressen name */
 	@Override
 	public double value(String name) {
-		Slot slot = map.get(name);
-		return slot.value(this);
+		try {
+			Slot slot = map.get(name);
+			return slot.value(this);
+		} catch (Exception e) {
+			// TODO: handle exception
+			return 0;
+		}
 	}
 
 	/* ************************************
