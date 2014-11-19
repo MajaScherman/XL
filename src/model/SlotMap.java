@@ -23,7 +23,7 @@ public class SlotMap extends HashMap<String, Slot> {
 		return slot;
 	}
 
-	public Slot remove(String address, MainSheet sheet) throws XLException {
+	public Slot remove(String address, Sheet sheet) throws XLException {
 		Slot tempSlot = super.get(address);
 		put(address, new BombSlot());
 		Collection<Slot> slots = values();

@@ -15,7 +15,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import model.MainSheet;
+import model.Sheet;
 import model.SlotFactory;
 
 public class XL extends JFrame implements Printable {
@@ -27,7 +27,7 @@ public class XL extends JFrame implements Printable {
     private CurrentLabel currentLabel;
     private CurrentAddress currentAddress;
     private ErrorMessage errorMessage;
-    private MainSheet sheet;
+    private Sheet sheet;
     
     public XL(XL oldXL) {
         this(oldXL.xlList, oldXL.counter);
@@ -38,7 +38,7 @@ public class XL extends JFrame implements Printable {
         
         errorMessage = new ErrorMessage();
         currentAddress = new CurrentAddress();
-        sheet = new MainSheet(new SlotFactory(), errorMessage);
+        sheet = new Sheet(new SlotFactory(), errorMessage);
         
         this.xlList = xlList;
         this.counter = counter;
@@ -82,7 +82,7 @@ public class XL extends JFrame implements Printable {
         new XL(new XLList(), new XLCounter());
     }
     
-    public MainSheet getSheet() {
+    public Sheet getSheet() {
     	return sheet;
     }
     

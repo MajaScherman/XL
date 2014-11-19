@@ -14,7 +14,7 @@ public class SlotFactory {
 		if (letter == '#') {
 			sb.deleteCharAt(0);
 			contents = sb.toString();
-			return new TextSlot(contents);
+			return new CommentSlot(contents);
 
 		} else {
 			ExprParser parser = new ExprParser();

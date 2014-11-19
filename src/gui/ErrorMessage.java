@@ -9,7 +9,7 @@ public class ErrorMessage extends Observable{
 		message = "No error";
 	}
 	
-	public void Error(String message){
+	public void error(String message){
 		this.message = message;
 		setChanged();
 		notifyObservers();

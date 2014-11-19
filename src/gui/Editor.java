@@ -8,13 +8,13 @@ import java.util.Observer;
 
 import javax.swing.JTextField;
 
-import model.MainSheet;
+import model.Sheet;
 
 public class Editor extends JTextField implements Observer, ActionListener {
-    private MainSheet sheet;
+    private Sheet sheet;
     private String currentAddress;
     
-	public Editor(MainSheet sheet) {
+	public Editor(Sheet sheet) {
         setBackground(Color.WHITE);
         this.sheet = sheet;
         addActionListener(this);

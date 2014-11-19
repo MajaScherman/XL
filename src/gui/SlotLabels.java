@@ -8,7 +8,7 @@ import java.util.Observer;
 
 import javax.swing.SwingConstants;
 
-import model.MainSheet;
+import model.Sheet;
 
 public class SlotLabels extends GridPanel implements Observer{
     private List<SlotLabel> labelList;
@@ -30,7 +30,7 @@ public class SlotLabels extends GridPanel implements Observer{
     }
     
     public void update(Observable obs, Object obj) {
-    	MainSheet sheet = (MainSheet) obs;
+    	Sheet sheet = (Sheet) obs;
     	for(SlotLabel s: labelList){
     		s.setText(sheet.getSlotText(s.toString()));
     	}

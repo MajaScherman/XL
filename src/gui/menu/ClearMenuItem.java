@@ -25,7 +25,7 @@ class ClearMenuItem extends JMenuItem implements ActionListener {
     		xl.getSheet().deleteSlot(currentSlotAddress);
 		} catch (XLException err) {
 			ErrorMessage errorMessage = xl.getErrorMessage();
-			errorMessage.Error(err.getMessage());
+			errorMessage.error(err.getMessage());
 		}
     }
 }
