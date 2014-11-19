@@ -11,7 +11,7 @@ public class BombSlot implements Slot {
 
 	@Override
 	public String toString(Environment env) {
-		return "bomb";
+		throw new XLException("This is a bomb, circular dependency detected");
 	}
 
 }

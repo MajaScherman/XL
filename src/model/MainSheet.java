@@ -9,40 +9,66 @@ import gui.StatusLabel;
 public class MainSheet extends Observable implements Environment {
 	private SlotFactory factory;
 	private SlotMap map;
-	//private StatusLabel statusLabel; //is it ok for me to add this and thus create a connection to the gui? dont know how to do it otherwise
-	//statusLabel behövs inte, kommenterar ut allt med den
 	private ErrorMessage errorMessage;
-	private Slot slot;
-//TODO notify observers on the right places
+	
+	// TODO notify observers on the right places
 	public MainSheet(SlotFactory factory) {
-		//this.statusLabel = new StatusLabel();
 		errorMessage = new ErrorMessage();
 		this.factory = factory;
 		map = new SlotMap();
 	}
 
+	/*
+	 * remove/clear-metod behöver implementeras 
+	 * Ganska mycket av
+	 * createSlot-metoden saknas också än så länge, den ska checka efter
+	 * cirkel-beroende samt kontrollera att uttrycket som tas in inte refererar
+	 * till ickeinstansierade slots, vi kom också överens om att den skulle ta
+	 * currentSlot som argument om jag inte minns fel Vi behöver också hjälpas
+	 * åt att implementera alla olika menyalternativ som inte är relaterade till
+	 * felhantering, typ print, save, load etc.
+	 * 
+	 */
+	public void clearSlotMap(){
+		map = new SlotMap();
+	}
+	public void deleteSlot(String address){
+		
+		map.remove(address, this);	
+		
+	}
+	
+	
 	public void createSlot(String currentSlotAddress, String editorText) {
+		Slot tempSlot = map.get(currentSlotAddress);
 		try {
-			slot = factory.buildSlot(editorText);
-			//bygger på att current är verkligen satt först!!!
-			map.put(currentSlotAddress, slot);
-			setChanged(); //tydligen måste detta göras innan man kör notifyObservers
-			notifyObservers();//här kanske e bra
 			
+			Slot slot = factory.buildSlot(editorText);
+			//kontroll efter cirkulärt beroende - efter bombslot
+	
+			map.put(currentSlotAddress, new BombSlot());
+			slot.value(this);// if there is a circular dependency exception will be thrown here
+			map.put(currentSlotAddress, slot);
+			setChanged(); 
+			notifyObservers();
+
 		} catch (XLException e) {
-	//		System.out.print("Failed to build a slot");
-			System.out.print(e.getMessage());	//man kan fråga sig om detta verkligen behövs
+			System.out.print(e.getMessage());
 			errorMessage.Error("Failed to build a slot: " + e.getMessage());
-			//statusLabel.update(this, errorMessage);
-			//raden ovan behövs inte, errormessage kör notifyObservers i errorMessage.Error()
+			map.put(currentSlotAddress, tempSlot);
 		}
 	}
 
 	/** Returnerar value:n av Sloten med addressen name */
 	@Override
 	public double value(String name) {
-		Slot slot = map.get(name);
-		return slot.value(this);
+		try {
+			Slot slot = map.get(name);
+			return slot.value(this);
+		} catch (XLException e) {
+			errorMessage.Error(e.getMessage());
+			return 0;
+		}
 	}
 
 	/* ************************************
@@ -58,7 +84,7 @@ public class MainSheet extends Observable implements Environment {
 		// kolla om Slot:en finns i SlotMap med exists(String)
 		// om den inte finns, returna ""
 		// annars, returnera slotens toString()
-		
+
 		if (!map.exists(address)) {
 			return "";
 
@@ -66,6 +92,10 @@ public class MainSheet extends Observable implements Environment {
 			Slot slot = map.get(address);
 			return slot.toString();
 		}
+	}
+	
+	public String getEditorText() {
+		return null;
 	}
 
 }
