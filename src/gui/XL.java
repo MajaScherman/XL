@@ -33,8 +33,6 @@ public class XL extends JFrame implements Printable {
         this(oldXL.xlList, oldXL.counter);
     }
 
-    //TODO lägga till att man skapar(?) ett XL-fönster så skapas modellen (MainSheet)
-    //		och så lägger man till dess Observers (CurrentLabel, SlotLabel, etc)
     public XL(XLList xlList, XLCounter counter) {
         super("Untitled-" + counter);
         
