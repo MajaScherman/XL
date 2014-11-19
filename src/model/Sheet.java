@@ -18,6 +18,8 @@ public class Sheet extends Observable implements Environment {
 
 	public void clearSlotMap() {
 		map = new SlotMap();
+		setChanged();
+		notifyObservers();
 	}
 
 	public void deleteSlot(String address) {
