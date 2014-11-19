@@ -46,8 +46,8 @@
       <name="=XL/src<gui{BorderPanel.java[BorderPanel"/>
       <height="-1"/>
       <width="-1"/>
-      <x="86"/>
-      <y="457"/>
+      <x="-8"/>
+      <y="325"/>
    </type>
    <type>
       <name="=XL/src<gui{ColoredLabel.java[ColoredLabel"/>
@@ -67,8 +67,8 @@
       <name="=XL/src<gui{XLCounter.java[XLCounter"/>
       <height="-1"/>
       <width="-1"/>
-      <x="-56"/>
-      <y="216"/>
+      <x="-29"/>
+      <y="192"/>
    </type>
    <type>
       <name="=XL/src<gui{Editor.java[Editor"/>
@@ -81,36 +81,36 @@
       <name="=XL/src<gui{Adjustment.java[Adjustment"/>
       <height="-1"/>
       <width="-1"/>
-      <x="-251"/>
-      <y="705"/>
+      <x="-28"/>
+      <y="675"/>
    </type>
    <type>
       <name="=XL/src<gui{SlotLabel.java[SlotLabel"/>
       <height="-1"/>
       <width="-1"/>
-      <x="479"/>
-      <y="329"/>
+      <x="490"/>
+      <y="384"/>
    </type>
    <type>
       <name="=XL/src<gui{StatusLabel.java[StatusLabel"/>
       <height="-1"/>
       <width="-1"/>
-      <x="162"/>
-      <y="281"/>
+      <x="135"/>
+      <y="272"/>
    </type>
    <type>
       <name="=XL/src<gui{CurrentLabel.java[CurrentLabel"/>
       <height="-1"/>
       <width="-1"/>
-      <x="313"/>
-      <y="86"/>
+      <x="314"/>
+      <y="65"/>
    </type>
    <type>
       <name="=XL/src<gui{SlotLabels.java[SlotLabels"/>
       <height="-1"/>
       <width="-1"/>
-      <x="40"/>
-      <y="716"/>
+      <x="160"/>
+      <y="725"/>
    </type>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
