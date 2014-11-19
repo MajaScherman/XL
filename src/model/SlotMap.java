@@ -45,8 +45,5 @@ public class SlotMap {
 		return tempSlot;
 	}
 
-	public boolean exists(String address) {
-		return map.containsKey(address);
-	}
 
 }

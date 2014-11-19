@@ -12,11 +12,19 @@ public class ExprSlot implements Slot {
 	
 	@Override
 	public double value(Environment env) {
-		return e.value(env);
+		try {
+			return e.value(env);
+		} catch (XLException e) {
+			throw e;
+		}
 	}
 
 	@Override
-	public String toString(Environment env) {
-		return "" + e.value(env);
+	public String toString(Environment env) throws XLException {
+		try {
+			return "" + e.value(env);
+		} catch (XLException e) {
+			throw e;
+		}
 	}
 }

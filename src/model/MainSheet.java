@@ -61,13 +61,13 @@ public class MainSheet extends Observable implements Environment {
 
 	/** Returnerar value:n av Sloten med addressen name */
 	@Override
-	public double value(String name) {
+	public double value(String name) throws XLException {
 		try {
 			Slot slot = map.get(name);
 			return slot.value(this);
 		} catch (XLException e) {
-			errorMessage.Error(e.getMessage());
-			return 0;
+//			errorMessage.Error(e.getMessage());
+			throw e;
 		}
 	}
 
@@ -81,16 +81,12 @@ public class MainSheet extends Observable implements Environment {
 	 */
 	public String getSlotText(String address) {
 
-		// kolla om Slot:en finns i SlotMap med exists(String)
-		// om den inte finns, returna ""
-		// annars, returnera slotens toString()
-
-		if (!map.exists(address)) {
-			return "";
-
-		} else {
+		try {
 			Slot slot = map.get(address);
-			return slot.toString();
+			return slot.toString(this);
+		} catch (XLException e) {
+			errorMessage.Error(e.getMessage());
+			return "";
 		}
 	}
 	
