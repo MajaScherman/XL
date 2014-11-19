@@ -23,9 +23,9 @@ public class Sheet extends Observable implements Environment {
 	}
 
 	public void deleteSlot(String address) {
-
 		map.remove(address, this);
-
+		setChanged();
+		notifyObservers();
 	}
 
 	public void createSlot(String currentSlotAddress, String editorText) {

@@ -25,13 +25,17 @@ public class SlotMap extends HashMap<String, Slot> {
 
 	public Slot remove(String address, Sheet sheet) throws XLException {
 		Slot tempSlot = super.get(address);
-		put(address, new BombSlot());
+		BombSlot b = new BombSlot();
+		put(address, b);
 		Collection<Slot> slots = values();
 		try {
 			for (Slot s : slots) {
-				s.value(sheet);
+				if (!s.equals(b)) {
+					s.value(sheet);
+				}
 			}
 		} catch (XLException e) {
+			put(address, tempSlot);
 			throw new XLException("Slot at " + address
 					+ " is used somwhere else." + e.getMessage());
 		}
