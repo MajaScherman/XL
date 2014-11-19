@@ -6,14 +6,12 @@ public class BombSlot implements Slot {
 
 	@Override
 	public double value(Environment env) {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new XLException("Circular dependency detected!");
 	}
 
 	@Override
 	public String toString(Environment env) {
-		// TODO Auto-generated method stub
-		return null;
+		return "bomb";
 	}
 
 }

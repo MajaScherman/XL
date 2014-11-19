@@ -10,7 +10,7 @@ public class XLPrintStream extends PrintStream {
         super(fileName);
     }
 
-    //TODO make sure Slot overrides toString
+
     public void save(Set<Entry<String, Slot>> set) {
         for (Entry<String, Slot> entry : set) {
             print(entry.getKey());
