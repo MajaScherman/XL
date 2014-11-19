@@ -16,7 +16,6 @@ public class CurrentAddress extends Observable{
 		current.setBackground(Color.YELLOW);
 		setChanged();
 		notifyObservers();
-		System.out.println(current.toString());
 	}
 	
 	public String getCurrent(){
