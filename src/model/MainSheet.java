@@ -102,5 +102,9 @@ public class MainSheet extends Observable implements Environment {
 			return "";
 		}
 	}
+	
+	public SlotMap getSlotMap() {
+		return map;
+	}
 
 }

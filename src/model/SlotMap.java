@@ -1,9 +1,11 @@
 package model;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Collection;
 import java.util.HashMap;
-
-import expr.Environment;
+import java.util.HashSet;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class SlotMap {
 	// address, slot
@@ -44,6 +46,14 @@ public class SlotMap {
 		map.remove(address);
 		return tempSlot;
 	}
-
-
+	
+	public Set<Entry<String, Slot>> getAddresSlotSet() {
+		Set<Entry<String, Slot>> addresSlotset = new HashSet<Entry<String, Slot>>();
+		Set<String> addresses = map.keySet();
+		for(String address : addresses) {
+			Slot slot = map.get(address);
+			addresSlotset.add(new SimpleEntry<String, Slot>(address, slot));
+		}
+		return addresSlotset;
+	}
 }
