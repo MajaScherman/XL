@@ -27,15 +27,17 @@ public class SlotLabels extends GridPanel implements Observer{
                 labelList.add(label);
             }
         }
-        SlotLabel firstLabel = labelList.get(0);
-        firstLabel.mouseClicked(null);
     }
     
     public void update(Observable obs, Object obj) {
-    	System.out.println("LOL");
     	MainSheet sheet = (MainSheet) obs;
     	for(SlotLabel s: labelList){
     		s.setText(sheet.getSlotText(s.toString()));
     	}
+    }
+    
+    public void clickFirstLabel(){
+        SlotLabel firstLabel = labelList.get(0);
+        firstLabel.mouseClicked(null);
     }
 }

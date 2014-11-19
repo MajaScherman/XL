@@ -58,12 +58,12 @@ public class XL extends JFrame implements Printable {
         setResizable(false);
         setVisible(true);
         
-        
-        
         errorMessage.addObserver(statusLabel);
         currentAddress.addObserver(statusPanel.getCurrentLabel());
         currentAddress.addObserver(editor);
-        sheet.addObserver(sheetPanel.getSlotLabels());
+        SlotLabels slotLabels = sheetPanel.getSlotLabels();
+        sheet.addObserver(slotLabels);
+        slotLabels.clickFirstLabel();
     }
 
     public int print(Graphics g, PageFormat pageFormat, int page) {

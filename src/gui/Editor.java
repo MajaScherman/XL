@@ -29,7 +29,9 @@ public class Editor extends JTextField implements Observer, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		System.out.println("EDIT");
-		sheet.createSlot(this.getText(), currentAddress);
+		String txt = this.getText();
+		if(txt.length() != 0){
+			sheet.createSlot(currentAddress, this.getText());
+		}
 	}
 }
