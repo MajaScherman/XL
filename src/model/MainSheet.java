@@ -11,22 +11,12 @@ public class MainSheet extends Observable implements Environment {
 	private SlotMap map;
 	private ErrorMessage errorMessage;
 
-	// TODO notify observers on the right places
 	public MainSheet(SlotFactory factory, ErrorMessage errorMessage) {
 		this.errorMessage = errorMessage;
 		this.factory = factory;
 		map = new SlotMap();
 	}
 
-	/*
-	 * remove/clear-metod behöver implementeras Ganska mycket av
-	 * createSlot-metoden saknas också än så länge, den ska checka efter
-	 * cirkel-beroende samt kontrollera att uttrycket som tas in inte refererar
-	 * till ickeinstansierade slots, vi kom också överens om att den skulle ta
-	 * currentSlot som argument om jag inte minns fel Vi behöver också hjälpas
-	 * åt att implementera alla olika menyalternativ som inte är relaterade till
-	 * felhantering, typ print, save, load etc.
-	 */
 	public void clearSlotMap() {
 		map = new SlotMap();
 	}
