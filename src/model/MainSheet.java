@@ -110,7 +110,6 @@ public class MainSheet extends Observable implements Environment {
 			Slot slot = map.get(address);
 			return slot.toString(this);
 		} catch (XLException e) {
-			errorMessage.Error(e.getMessage());
 			return "";
 		}
 	}
