@@ -91,4 +91,8 @@ public class XL extends JFrame implements Printable {
     public CurrentAddress getCurrentAddress() {
     	return currentAddress;
     }
+    
+    public ErrorMessage getErrorMessage() {
+    	return errorMessage;
+    }
 }
