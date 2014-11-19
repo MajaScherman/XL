@@ -17,6 +17,7 @@ public class Editor extends JTextField implements Observer, ActionListener {
 	public Editor(MainSheet sheet) {
         setBackground(Color.WHITE);
         this.sheet = sheet;
+        addActionListener(this);
     }
 
 	@Override
@@ -28,6 +29,7 @@ public class Editor extends JTextField implements Observer, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		sheet.createSlot(this.getText(), currentAddress); //createSlot should take current address as parameter, leave this and change method in MainSheet
+		System.out.println("EDIT");
+		sheet.createSlot(this.getText(), currentAddress);
 	}
 }

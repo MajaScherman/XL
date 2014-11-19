@@ -32,6 +32,7 @@ public class SlotLabels extends GridPanel implements Observer{
     }
     
     public void update(Observable obs, Object obj) {
+    	System.out.println("LOL");
     	MainSheet sheet = (MainSheet) obs;
     	for(SlotLabel s: labelList){
     		s.setText(sheet.getSlotText(s.toString()));
